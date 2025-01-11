@@ -1,15 +1,14 @@
-# Human Mouse
+# Human Mouse 🖱️
 
-A Python package that generates realistic, human-like mouse movements using spline interpolation and natural movement patterns.
+🎯 Human-like mouse movements powered by bezier curves and spline interpolation. Ultra-realistic cursor automation.
 
-## Features
+[![PyPI version](https://badge.fury.io/py/human-mouse.svg)](https://badge.fury.io/py/human-mouse)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- Realistic mouse movements using Spline interpolation
-- Movement patterns and Random trajectories
-- Zigzag and Smooth movements
-- Natural consistent clicks, double-clicks, and right-clicks:
-- Virtual Display support on Linux based systems
-- Adjustable speed & movement pattern easily using
+## Overview
+
+Human Mouse is a sophisticated Python package that generates ultra-realistic mouse movements by implementing advanced mathematical algorithms. It uses a combination of bezier curves and spline interpolation to create smooth, natural-looking cursor trajectories that closely mimic human behavior.
 
 ## Installation
 
@@ -17,70 +16,110 @@ A Python package that generates realistic, human-like mouse movements using spli
 pip install human-mouse
 ```
 
-## Quick Start
+## Core Functions & Examples
+
+### Basic Movement
+
+Move cursor to specific coordinates with natural trajectory
 
 ```python
-from human_mouse import MouseController
-
-# Create a mouse controller
 mouse = MouseController()
+mouse.move(500, 300)  # Move to coordinates
+mouse.move(800, 600, speed_factor=0.5)  # Move faster
+```
 
-# Move to specific coordinates
-mouse.move(500, 300)  # Move to x=500, y=300
+### Random Movement
 
-# Perform clicks
-mouse.perform_click()  # Click at current position
-mouse.perform_click(200, 300)  # Move and click at position
+Move to a random screen position using human-like patterns
 
-# Double click
-mouse.perform_double_click(300, 400)  # Move and double click
+```python
+mouse.move_random()  # Move to random position
+mouse.move_random(speed_factor=2.0)  # Slower random movement
+```
 
-# Right click
-mouse.perform_context_click()  # Right click at current position
+### Click Operations
+    
+Execute a single click
 
-# Random movement
-mouse.move_random()  # Move to random screen position
+```python
+mouse.perform_click(500, 300)  # Move and click
+```
 
-# Create zigzag-focused movement patterns
+Natural double click
+```python
+mouse.perform_double_click(500, 300)  # Move and double click
+```
+
+Right-click action
+```python
+mouse.perform_context_click(500, 300)  # Move and right click
+```
+
+### Movement Patterns
+
+Enable zigzag movements for more natural patterns
+```python
 zigzag_mouse = MouseController(always_zigzag=True)
 zigzag_mouse.move(500, 300)
 ```
 
-## Advanced Usage
-
 ### Virtual Display Support
 
-For Linux systems with virtual displays:
-
+Linux virtual display support
 ```python
-mouse = MouseController(is_virtual=True)
+virtual_mouse = MouseController(is_virtual=True)
+virtual_mouse.move(500, 300)
 ```
 
-### Movement Customization
+## Advanced Features
+
+### Movement Patterns
+- Bezier curve interpolation for smooth trajectories
+- Spline-based path generation
+- Randomized movement variance
+- Natural acceleration/deceleration
+- Configurable zigzag patterns
+
+### Platform Support
+- Windows: Full native support
+- macOS: Full native support
+- Linux: Supports both native and virtual displays
+
+## Complete Example
 
 ```python
-# Adjust movement speed (lower value = faster)
-mouse.move(500, 300, speed_factor=0.5)  # Faster movement
-mouse.move(500, 300, speed_factor=2.0)  # Slower movement
+from human_mouse import MouseController
+import time
+
+# Initialize controller
+mouse = MouseController(always_zigzag=True)
+
+# Perform series of actions
+mouse.move(500, 300)  # Move to position
+time.sleep(0.5)  # Wait briefly
+mouse.perform_click()  # Click
+time.sleep(0.5)  # Wait briefly
+mouse.move_random()  # Move to random position
+mouse.perform_double_click()  # Double click
 ```
 
-## Requirements
+## Technical Requirements
 
 - Python 3.10+
-- numpy
-- pyautogui
-- scipy
-- python-xlib (optional, for Linux virtual display support)
+- Dependencies:
+  - numpy
+  - pyautogui
+  - scipy
+  - python-xlib (optional, for Linux virtual display)
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions! Please feel free to submit pull requests.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License - see the LICENSE file for details.
 
-## Random Move Demo
+## Support
 
-https://github.com/user-attachments/assets/fa5b900b-01c3-4312-819c-1f558005b54e
-
+- Issues: [GitHub Issues](https://github.com/sarperavci/human_mouse/issues)
