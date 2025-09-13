@@ -51,8 +51,9 @@ class MouseController:
         ceiling = random.randint(10, 15)
         return random.randint(base, ceiling)
 
-    def _generate_path_coordinates(self, nodes: int, target_x: int, target_y: int) -> Tuple[NDArray, NDArray]:
-        start_x, start_y = pyautogui.position()
+    def _generate_path_coordinates(self, nodes: int, target_x: int, target_y: int, start_x: int = None, start_y: int = None) -> Tuple[NDArray, NDArray]:
+        if start_x is None or start_y is None:
+            start_x, start_y = pyautogui.position()
         distance = ((target_x - start_x)**2 + (target_y - start_y)**2)**0.5
         
         if random.random() < 0.75 or self.always_zigzag:
